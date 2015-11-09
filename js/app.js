@@ -1,22 +1,15 @@
 var data;
-var baseArtist = 'https://api.spotify.com/v1/search?type=artist&query=';
+var baseUrl = 'https://api.spotify.com/v1/search?type=track&query=';
 var topTracks
 
 var myApp = angular.module('myApp', [])
 var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
 
-  $scope.getArtist = function() {
-    console.log("hi");
-    $http.get(baseArtist + $scope.artists).success(function(response){
-      console.log("ho");
-      data = $scope.artists = response.artists.items
-      console.log(data);
+  $scope.getTracks = function() {
+    $http.get(baseUrl + $scope.track).success(function(response){
+      data = $scope.tracks = response.tracks.items
     })
-
-    // $http.get('http://api.spotify.com/v1/artists/' + id + '/top-tracks?country=US').success(function(response) {
-    //   topTracks = $scope.tracks = response.tracks
-    // })
   }
 
   //Plays a sample of the song found on Spotify

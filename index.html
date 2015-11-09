@@ -27,40 +27,46 @@
 			<form class="container" name="songForm">
 				<div class='row'>
 					<div class="form-group col-xs-12 col-sm-10">
-						<input name="search" placeholder="Search artist name" ng-model="track" class="form-control" ng-minlength='3'></input>
-						<p ng-show="songForm.search.$error.minlength" class="help-block">Enter artist longer than 3 characters</p>
+						<input name="search" placeholder="Search through spotify!" ng-model="track" class="form-control" ng-minlength='3'></input>
+						<p ng-show="songForm.search.$error.minlength" class="help-block">Enter information longer than 3 characters</p>
 					</div>
 					<div class="form-group col-xs-12 col-sm-2">
-						<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getArtist()" type="submit">Submit</button>
+						<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getTracks()" type="submit">Submit</button>
 					</div>
 				</div>
 			</form>
 			
 			<!-- Results -->
-			<div class="container">
-				<hr>
-				<div class="help-block">
-					<span ng-show="tracks.length>0">Click to sample</span>
-					<span ng-show="currentSong && !audioObject.paused">(playing)</span>
-				</div>
-				<!-- display album cover -->
-				<div class="col-xs-3">
-					<img ng-click="play(track.preview_url)" title="{{track.artist}}"></img> <!-- src="{{track.album.images[0].url}}" -->
-					<p>poop<p>
-				</div>
-				<!-- display track name -->
-				<div class="col-xs-3" ng-click="play(track.preview_url)">
-					<p>poop<p>
-				</div>
-				<!-- display album name  -->
-				<div class="col-xs-3" ng-click="play(track.preview_url)">
-					<p>poop<p>
-				</div>
-				<!-- display artist popularity -->
-				<div class="col-xs-3" ng-click="play(track.preview_url)">
-					<p>poop<p>
-				</div>
-			</div>
+
+			<div name="container-fixed">
+	          <table>
+	          	<thead>
+	          		<tr class="row">
+		          		<th class="col-sm-3">Song Cover</th>
+		                <th class="col-sm-3">Song Title</th>
+		                <th class="col-sm-3">Song's Album</th>
+		                <th class="col-sm-3">Song Popularity</th>
+	          		</tr>
+	          	</thead>
+	            <tbody ng-repeat="track in tracks"> 
+	              <tr class="row">
+	                <td class="col-sm-3">
+	                    <img src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>
+	                </td>
+	                <td class="col-sm-3">
+	                  <h4>{{track.name}}</h4>
+	                </td>
+	                <td class="col-sm-3">
+	                  <h4>{{track.album.name}}</h4>
+	                </td>
+	                <td class="col-sm-3">
+	                	<h4>{{track.popularity}}% Liked This Song!</h4>
+	                </td>
+	              </tr>
+	            </tbody>
+	          </table>
+	        </div>
+
 		</div>
 	</body>
 </html>
