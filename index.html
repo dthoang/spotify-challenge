@@ -23,13 +23,13 @@
 		</div>
 
 		<div ng-app="myApp" ng-controller="myCtrl">
-			<!-- Form for inventory of track information -->
+			<!-- Inventory of track information -->
 			<div id="songInventory">
 				<form class="container" name="songForm">
 					<div class='row'>
 						<p class="container">Need a break? Tune Out, Listen In can help! Just type what your feeling and search for sound!</p>
 						<div class="form-group col-xs-12 col-sm-10" align="center" ng-class="{'has-error':songForm.search.$touched && songForm.search.$invalid}">
-							<input name="search" placeholder="Search through spotify!" ng-model="track" class="form-control" ng-required="true" ng-minlength='3'></input>
+							<input name="search" placeholder="Search through Spotify!" ng-model="track" class="form-control" ng-required="true" ng-minlength='3'></input>
 							<p ng-show="songForm.search.$error.minlength" class="help-block">Enter information longer than 3 characters</p>
 						</div>
 						<div class="form-group col-xs-12 col-sm-2">
@@ -70,8 +70,43 @@
 		        </div>
 	    	</div>
 
-	    	<!-- Form for artist comparison -->
+	    	<hr class="container"/>
 
+	    	<!-- Form for artist comparison -->
+			<div id="artistComparison">
+				<form class="container" name="artistForm">
+					<div class='row'>
+						<p class="container">Need more music? Find an artist and find out other artist with similar sounds!</p>
+						<div class="form-group col-xs-12 col-sm-10" align="center" ng-class="{'has-error':artistForm.search.$touched && artistForm.search.$invalid}">
+							<input name="search" placeholder="Search Artists on Spotify!" ng-model="artist" class="form-control" ng-required="true" ng-minlength='3'></input>
+							<p ng-show="artistForm.search.$error.minlength" class="help-block">Enter artist name longer than 3 characters</p>
+						</div>
+						<div class="form-group col-xs-12 col-sm-2">
+							<button id="submitButton" ng-disabled="artistForm.search.$invalid" class="btn btn-primary" ng-click="getArtist()" type="submit">Submit</button>
+						</div>
+					</div>
+				</form>
+				
+				<!-- Results of artist comparison -->
+
+				<div name="container-fixed" align="center">
+					{{artist.name}}
+		          <table>
+		            <tbody ng-repeat="artist in artists"> 
+		              <tr class="row">
+		                <td class="col-xs-6">
+				            <img src="{{artist.images[1].url}}"/>
+		                </td>
+		                <td class="col-xs-6">
+		                  <p>{{artist.name}}</p>
+		                </td>
+		              </tr>
+		            </tbody>
+		          </table>
+		        </div>
+	    	</div>
+
+	    	
 		</div>
 	</body>
 </html>
