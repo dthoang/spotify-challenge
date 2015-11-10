@@ -39,74 +39,38 @@
 				</form>
 				
 				<!-- Results of song information -->
-
 				<div name="container-fixed" align="center">
-		          <table>
-		             <thead>
-		          		<tr class="row" ng-show="tracks.length>0">
-			          		<th class="col-xs-3">Click Cover to Play</th>
-			                <th class="col-xs-3">Title</th>
-			                <th class="col-xs-3">Album</th>
-			                <th class="col-xs-3">Song Popularity</th>
-		          		</tr>
-		          	</thead>
-		            <tbody ng-repeat="track in tracks"> 
-		              <tr class="row">
-		                <td class="col-xs-3">
-		                    <img style="width:75%;" src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>
-		                </td>
-		                <td class="col-xs-3">
-		                  <p>{{track.name}}</p>
-		                </td>
-		                <td class="col-xs-3">
-		                  <p>{{track.album.name}}</p>
-		                </td>
-		                <td class="col-xs-3">
-		                	<p>{{track.popularity}}% Liked This Song!</p>
-		                </td>
-		              </tr>
-		            </tbody>
-		          </table>
+		          	<table>
+		             	<thead>
+		          			<tr class="row" ng-show="tracks.length>0">
+				          		<th class="col-xs-3">Click Cover to Play</th>
+				                <th class="col-xs-3">Title</th>
+				                <th class="col-xs-3">Album</th>
+				                <th class="col-xs-3">Song Popularity</th>
+		          			</tr>
+		          		</thead>
+
+		            	<tbody ng-repeat="track in tracks"> 
+		              	<tr class="row">
+		                	<td class="col-xs-3">
+		                    	<img style="width:75%;" src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>		         	
+
+		                	</td>
+		                	<td class="col-xs-3">
+		                  		<p><i>{{track.name}}</i></p>
+		                	</td>
+		                	<td class="col-xs-3">
+		                  		<p>{{track.album.name}}</p>
+		                	</td>
+		                	<td class="col-xs-3">
+		                		<p><b id="percentage">{{track.popularity}}%</b> Liked This Song!</p>
+		                	</td>
+		              	</tr>		                    	
+		            	</tbody>
+		         	</table>
+
 		        </div>
 	    	</div>
-
-	    	<hr class="container"/>
-
-	    	<!-- Form for artist comparison -->
-			<div id="artistComparison">
-				<form class="container" name="artistForm">
-					<div class='row'>
-						<p class="container">Need more music? Find an artist and find out other artist with similar sounds!</p>
-						<div class="form-group col-xs-12 col-sm-10" align="center" ng-class="{'has-error':artistForm.search.$touched && artistForm.search.$invalid}">
-							<input name="search" placeholder="Search Artists on Spotify!" ng-model="artist" class="form-control" ng-required="true" ng-minlength='3'></input>
-							<p ng-show="artistForm.search.$error.minlength" class="help-block">Enter artist name longer than 3 characters</p>
-						</div>
-						<div class="form-group col-xs-12 col-sm-2">
-							<button id="submitButton" ng-disabled="artistForm.search.$invalid" class="btn btn-primary" ng-click="getArtist()" type="submit">Submit</button>
-						</div>
-					</div>
-				</form>
-				
-				<!-- Results of artist comparison -->
-
-				<div name="container-fixed" align="center">
-					{{artist.name}}
-		          <table>
-		            <tbody ng-repeat="artist in artists"> 
-		              <tr class="row">
-		                <td class="col-xs-6">
-				            <img src="{{artist.images[1].url}}"/>
-		                </td>
-		                <td class="col-xs-6">
-		                  <p>{{artist.name}}</p>
-		                </td>
-		              </tr>
-		            </tbody>
-		          </table>
-		        </div>
-	    	</div>
-
-	    	
 		</div>
 	</body>
 </html>

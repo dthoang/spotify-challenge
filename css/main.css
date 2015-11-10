@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Merriweather:400,300);
 
 body {
-    background-color: black;
+    background-color: #303030;
     color: white;
     font-family: "Merriweather", "serif";
 }
@@ -12,6 +12,19 @@ h1 {
     font-family: "Ruda", "Helvetica Neue", "Helvetica", "sans-serif";
 }
 
+#headerarea {
+    background-color: orange;
+}
+
+#submitButton {
+    text-align: center;
+    background-color: #800080;
+}
+
+#percentage {
+    color: orange;
+}
+
 /*Adjust table styling*/
 table {
     margin-left: 2em;
@@ -19,12 +32,13 @@ table {
 }
 
 thead {
-    background-color: green;
-    text-align: center;
+    background-color: #800080;
 }
 
 th {
     font-family: "Ruda";
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 table tr {
@@ -34,11 +48,6 @@ table tr {
 /*Adjust form styling*/
 form {
     padding: 1em;
-}
-
-#submitButton {
-    text-align: center;
-    background-color: orange;
 }
 
 /*Adjusts mobile compatibility*/
@@ -58,8 +67,15 @@ form {
     #headerarea h1 {
         float: right;
         vertical-align: center;
-        margin-right: 1em;
-        margin-top: 4em;
+        margin-right: 0.75em;
+        margin-top: 2.5em;
+        font-size: 4em;
+        text-shadow: 2px 2px black;;
+    }
+
+    th {
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 
 }
