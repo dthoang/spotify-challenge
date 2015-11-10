@@ -50,7 +50,7 @@
 		          			</tr>
 		          		</thead>
 
-		            	<tbody ng-repeat="track in tracks"> 
+		            	<tbody ng-repeat="track in tracks | orderBy: order"> 
 		              	<tr class="row">
 		                	<td class="col-xs-3">
 		                    	<img style="width:75%;" src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>		         	

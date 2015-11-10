@@ -9,7 +9,9 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.getTracks = function() {
     $http.get(baseUrl + $scope.track).success(function(response){
       data = $scope.tracks = response.tracks.items
-
+      $scope.setOrder = function(value) {
+        $scope.order = value
+      }
     })
   }
 
