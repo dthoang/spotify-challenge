@@ -19,53 +19,58 @@
 	<body>
 		<!-- Initiate app -->
 		<div id="headerArea" class="container-fluid">
-			<h1>Shut Up, Listen</h1>
+			<h1>Tune out, Listen in.</h1>
 		</div>
 
 		<div ng-app="myApp" ng-controller="myCtrl">
-			<!-- Form -->
-			<form class="container" name="songForm">
-				<div class='row'>
-					<div class="form-group col-xs-12 col-sm-10">
-						<input name="search" placeholder="Search through spotify!" ng-model="track" class="form-control" ng-minlength='3'></input>
-						<p ng-show="songForm.search.$error.minlength" class="help-block">Enter information longer than 3 characters</p>
+			<!-- Form for inventory of track information -->
+			<div id="songInventory">
+				<form class="container" name="songForm">
+					<div class='row'>
+						<p class="container">Need a break? Tune Out, Listen In can help! Just type what your feeling and search for sound!</p>
+						<div class="form-group col-xs-12 col-sm-10" align="center" ng-class="{'has-error':songForm.search.$touched && songForm.search.$invalid}">
+							<input name="search" placeholder="Search through spotify!" ng-model="track" class="form-control" ng-required="true" ng-minlength='3'></input>
+							<p ng-show="songForm.search.$error.minlength" class="help-block">Enter information longer than 3 characters</p>
+						</div>
+						<div class="form-group col-xs-12 col-sm-2">
+							<button id="submitButton" ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getTracks()" type="submit">Submit</button>
+						</div>
 					</div>
-					<div class="form-group col-xs-12 col-sm-2">
-						<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getTracks()" type="submit">Submit</button>
-					</div>
-				</div>
-			</form>
-			
-			<!-- Results -->
+				</form>
+				
+				<!-- Results of song information -->
 
-			<div name="container-fixed">
-	          <table>
-	          	<thead>
-	          		<tr class="row">
-		          		<th class="col-sm-3">Song Cover</th>
-		                <th class="col-sm-3">Song Title</th>
-		                <th class="col-sm-3">Song's Album</th>
-		                <th class="col-sm-3">Song Popularity</th>
-	          		</tr>
-	          	</thead>
-	            <tbody ng-repeat="track in tracks"> 
-	              <tr class="row">
-	                <td class="col-sm-3">
-	                    <img src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>
-	                </td>
-	                <td class="col-sm-3">
-	                  <h4>{{track.name}}</h4>
-	                </td>
-	                <td class="col-sm-3">
-	                  <h4>{{track.album.name}}</h4>
-	                </td>
-	                <td class="col-sm-3">
-	                	<h4>{{track.popularity}}% Liked This Song!</h4>
-	                </td>
-	              </tr>
-	            </tbody>
-	          </table>
-	        </div>
+				<div name="container-fixed" align="center">
+		          <table>
+		             <thead>
+		          		<tr class="row" ng-show="tracks.length>0">
+			          		<th class="col-xs-3">Click Cover to Play</th>
+			                <th class="col-xs-3">Title</th>
+			                <th class="col-xs-3">Album</th>
+			                <th class="col-xs-3">Song Popularity</th>
+		          		</tr>
+		          	</thead>
+		            <tbody ng-repeat="track in tracks"> 
+		              <tr class="row">
+		                <td class="col-xs-3">
+		                    <img style="width:75%;" src="{{track.album.images[1].url}}" ng-click="play(track.preview_url)"/>
+		                </td>
+		                <td class="col-xs-3">
+		                  <p>{{track.name}}</p>
+		                </td>
+		                <td class="col-xs-3">
+		                  <p>{{track.album.name}}</p>
+		                </td>
+		                <td class="col-xs-3">
+		                	<p>{{track.popularity}}% Liked This Song!</p>
+		                </td>
+		              </tr>
+		            </tbody>
+		          </table>
+		        </div>
+	    	</div>
+
+	    	<!-- Form for artist comparison -->
 
 		</div>
 	</body>
